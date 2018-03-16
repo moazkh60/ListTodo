@@ -10,36 +10,68 @@ import UIKit
 
 class TodoVC: UITableViewController {
     
-    var itemsList: [Item] = []
+    // Items list to store todos
+    var todoList: [ToDo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    // When add button on top is pressed
     @IBAction func addTodoPressed(_ sender: Any) {
+        
+        var itemTextField = UITextField()
+        let alert = UIAlertController(title: "Add Todo Item", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add Items", style: .default) { (action) in
+            
+            // Context from app delegate singleton
+            let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+
+            // Context can't be nil
+            if let context = context{
+                let todo = ToDo(context: context)
+                let title = itemTextField.text
+                
+                // Nil todos can't be added
+                if let title = title{
+                    todo.title = title
+                    self.todoList.append(todo)
+                    
+                    do{
+                     try context.save()
+                    }catch{
+                        fatalError("Error storing data")
+                    }
+                }
+            }
+        }
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Add Todo Item"
+            itemTextField = textField
+        }
+        
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return todoList.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
