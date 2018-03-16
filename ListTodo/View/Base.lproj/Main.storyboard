@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Categories-->
+        <!--ToDo-->
         <scene sceneID="huZ-Ut-ocE">
             <objects>
                 <tableViewController id="bYK-Qk-S8G" customClass="CategoryVC" customModule="ListTodo" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,9 +47,12 @@
                             <outlet property="delegate" destination="bYK-Qk-S8G" id="C20-7e-T1O"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Categories" largeTitleDisplayMode="always" id="oP8-RR-rVP">
+                    <navigationItem key="navigationItem" title="ToDo" largeTitleDisplayMode="always" id="oP8-RR-rVP">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="a7R-up-arN">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="addTodoPressed:" destination="bYK-Qk-S8G" id="2tC-sh-f8E"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

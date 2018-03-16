@@ -1,5 +1,5 @@
 //
-//  CategoryVC.swift
+//  TodoVC.swift
 //  ListTodo
 //
 //  Created by Muhammad Moaz Khan on 16/03/2018.
@@ -8,20 +8,17 @@
 
 import UIKit
 
-class CategoryVC: UITableViewController {
+class TodoVC: UITableViewController {
     
-
+    var itemsList: [Item] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
+    @IBAction func addTodoPressed(_ sender: Any) {
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
