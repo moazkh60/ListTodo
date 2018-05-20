@@ -77,22 +77,6 @@ class TodoVC: UITableViewController {
         }
     }
     
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoList.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ToDoItemCell
-        cell.title.text = todoList[indexPath.item].title
-        
-        return cell
-    }
-    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -102,6 +86,24 @@ class TodoVC: UITableViewController {
                 //detailVC.text = todoList.text
             }
         }
- 
+    }
+}
+
+// MARK: - Extension for tableview methods
+extension TodoVC{
+    
+    // MARK: - Table view data source
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return todoList.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ToDoItemCell
+        cell.title.text = todoList[indexPath.item].title
+        return cell
     }
 }
