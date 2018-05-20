@@ -82,8 +82,9 @@ class TodoVC: UITableViewController {
         
         if segue.identifier == "detailSegueId"{
             let detailVC = segue.destination as? DetailVC
-            if let detailVC = detailVC{
-                //detailVC.text = todoList.text
+            let row = sender as? Int
+            if let detailVC = detailVC, let row = row{
+                detailVC.text = todoList[row].detail
             }
         }
     }
@@ -105,5 +106,9 @@ extension TodoVC{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ToDoItemCell
         cell.title.text = todoList[indexPath.item].title
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "detailSegueId", sender: indexPath.row)
     }
 }
