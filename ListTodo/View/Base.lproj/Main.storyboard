@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="pSl-lB-oHO" rowHeight="68" style="IBUITableViewCellStyleDefault" id="rcb-Jx-xAf">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="pSl-lB-oHO" rowHeight="68" style="IBUITableViewCellStyleDefault" id="rcb-Jx-xAf" customClass="ToDoItemCell" customModule="ListTodo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="68"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rcb-Jx-xAf" id="zvm-og-G8H">
@@ -40,6 +40,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="title" destination="pSl-lB-oHO" id="ubq-rv-JNv"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -89,6 +92,9 @@
                         <viewLayoutGuide key="safeArea" id="Lm6-tc-KuI"/>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="wwT-Pm-Jai"/>
+                    <connections>
+                        <outlet property="detailTextView" destination="RmU-AM-C0n" id="txJ-He-MeH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEh-2v-ewZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
