@@ -9,14 +9,10 @@
 import UIKit
 import CoreData
 
-class TodoVC: UITableViewController {
+class ToDoVC: ToDoParent{
     
-    // Items list to store todos
-    var todoList: [ToDo] = []
+    @IBOutlet weak var tableView: UITableView!
     
-    // Core data context
-    var context: NSManagedObjectContext?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,13 +20,17 @@ class TodoVC: UITableViewController {
         context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         
         // load todo list data
-        loadData()
+        if loadData(){
+            tableView.reloadData()
+        }
     }
     
     // When add button on top is pressed
     @IBAction func addTodoPressed(_ sender: Any) {
         
         var itemTextField = UITextField()
+        var detailsTextField = UITextField()
+        
         let alert = UIAlertController(title: "Add Todo Item", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Items", style: .default) { (action) in
             
@@ -39,10 +39,13 @@ class TodoVC: UITableViewController {
             if let context = self.context{
                 let todo = ToDo(context: context)
                 let title = itemTextField.text
+                let details = detailsTextField.text
                 
                 // Nil todos can't be added
                 if let title = title{
                     todo.title = title
+                    todo.detail = details
+                    
                     self.todoList.append(todo)
                     
                     do{
@@ -60,21 +63,20 @@ class TodoVC: UITableViewController {
             itemTextField = textField
         }
         
+        alert.addTextField { (textField) in
+            textField.placeholder = "Add Todo Details"
+            detailsTextField = textField
+        }
+        
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
     
-    // Load data from  coredata
-    func loadData(){
-        let request:NSFetchRequest<ToDo> = ToDo.fetchRequest()
-        do{
-            if let context = context{
-                todoList = try context.fetch(request)
-                tableView.reloadData()
-            }
-        }catch{
-            print("Error fetching data")
+    override func loadData()->Bool{
+        if super.loadData(){
+            return true
         }
+        return false
     }
     
     // MARK: - Navigation
@@ -84,31 +86,32 @@ class TodoVC: UITableViewController {
             let detailVC = segue.destination as? DetailVC
             let row = sender as? Int
             if let detailVC = detailVC, let row = row{
-                detailVC.text = todoList[row].detail
+                detailVC.titleText = todoList[row].title
+                detailVC.detailText = todoList[row].detail
             }
         }
     }
 }
 
 // MARK: - Extension for tableview methods
-extension TodoVC{
+extension ToDoVC: UITableViewDelegate, UITableViewDataSource{
     
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoList.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ToDoItemCell
         cell.title.text = todoList[indexPath.item].title
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "detailSegueId", sender: indexPath.row)
     }
 }

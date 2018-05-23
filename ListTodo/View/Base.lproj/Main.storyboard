@@ -18,7 +18,7 @@
         <!--ToDo-->
         <scene sceneID="huZ-Ut-ocE">
             <objects>
-                <tableViewController id="bYK-Qk-S8G" customClass="TodoVC" customModule="ListTodo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="bYK-Qk-S8G" customClass="ToDoVC" customModule="ListTodo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="00r-7u-NO4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,8 +46,8 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="bYK-Qk-S8G" id="gBn-vo-MEB"/>
-                            <outlet property="delegate" destination="bYK-Qk-S8G" id="C20-7e-T1O"/>
+                            <outlet property="dataSource" destination="bYK-Qk-S8G" id="nqy-en-vjy"/>
+                            <outlet property="delegate" destination="bYK-Qk-S8G" id="OAl-KI-4ed"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="ToDo" largeTitleDisplayMode="always" id="oP8-RR-rVP">
@@ -59,6 +59,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="00r-7u-NO4" id="i7W-9w-l6G"/>
                         <segue destination="l0b-p2-Art" kind="show" identifier="detailSegueId" id="ODk-gp-HwZ"/>
                     </connections>
                 </tableViewController>
@@ -92,6 +93,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="wwT-Pm-Jai"/>
                     <connections>
+                        <outlet property="detailItem" destination="wwT-Pm-Jai" id="SfH-wy-f4I"/>
                         <outlet property="detailTextView" destination="RmU-AM-C0n" id="txJ-He-MeH"/>
                     </connections>
                 </viewController>

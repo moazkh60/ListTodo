@@ -7,16 +7,27 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailVC: UIViewController {
 
     @IBOutlet weak var detailTextView: UITextView!
-    var text: String?
+    
+    @IBOutlet weak var detailItem: UINavigationItem!
+    
+    // Todo title
+    var titleText: String?
+    
+    // Todo detail
+    var detailText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        detailItem.prompt = titleText
+        
         //set the detail text
-        detailTextView.text = text
+        detailTextView.text = detailText
+        
     }
 }
