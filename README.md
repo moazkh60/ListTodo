@@ -8,7 +8,7 @@
 
 ListTodo is a simple app made for making todo list. From the top right plus icon the user can add a todo and description. The app uses core data and is best for learning purposes. The app follow MVC architecture, which is organized in an elegant way.
 
-![](./Screenshots/page1.png) ![](./Screenshots/page2.png)
+![](./Screenshots/loading.png) ![](./Screenshots/home.png)
 
 ## Features
 
