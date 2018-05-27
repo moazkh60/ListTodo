@@ -1,7 +1,7 @@
 # ListTodo
 > An opensource todo list app.
 
-[![4.1][swift-image]][swift-url]
+[!4.1[swift-image]][swift-url]
 [![Build Status][travis-image]][travis-url]
 [![License][license-image]][license-url]
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
